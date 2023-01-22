@@ -1,5 +1,6 @@
 <?php
 $address = "123 Main St, Suite 200, Anytown USA 12345";
+
 $fields = (new AddressExtractor())->extractFields($address);
 print_r($fields);
 
@@ -12,7 +13,6 @@ print_r($fields);
 //     [zip] => 12345
 // )
 
-$address = "123 Main St, Suite 200, Anytown USA 12345";
 $fields = (new AddressExtractor())->extractFields($address, ['city', 'state']);
 print_r($fields);
 
@@ -23,7 +23,6 @@ print_r($fields);
 // )
 
 // Output
-$address = "123 Main St, Suite 200, Anytown USA 12345";
 $fields = (new AddressExtractor())->extractFields($address, ['address1', 'address2', 'city', 'state']);
 print_r($fields);
 
