@@ -1,34 +1,52 @@
 <?php
-$address = "123 Main St, Suite 200, Anytown USA 12345";
+require_once 'AddressExtractor.php';
+
+$address = "290 Area BLVD APT 71, City, FL 12323";
 
 $fields = (new AddressExtractor())->extractFields($address);
 print_r($fields);
 
 // Output
-// Array (
-//     [address1] => 123 Main St
-//     [address2] => Suite 200
-//     [city] => Anytown
-//     [state] => USA
-//     [zip] => 12345
+// Array
+// (
+//     [address1] => 290 AREA BLVD
+//     [address2] => APT 71
+//     [city] => City
+//     [state] => FL
+//     [zip] => 12323
+//     [condo_unit_number] => 71
+//     [condo_floor_number] => 1
 // )
 
-$fields = (new AddressExtractor())->extractFields($address, ['city', 'state']);
+$address = "290 Area BLVD Unit 1231, City, FL 12323";
+
+$fields = (new AddressExtractor())->extractFields($address);
 print_r($fields);
 
 // Output
-// Array (
-//     [city] => Anytown
-//     [state] => USA
+// Array
+// (
+//     [address1] => 290 AREA BLVD
+//     [address2] => UNIT 1231
+//     [city] => City
+//     [state] => FL
+//     [zip] => 12323
+//     [condo_unit_number] => 1231
+//     [condo_floor_number] => 12
 // )
 
-// Output
-$fields = (new AddressExtractor())->extractFields($address, ['address1', 'address2', 'city', 'state']);
+$address = "290 Area BLVD, City, FL 12323";
+$fields = (new AddressExtractor())->extractFields($address);
 print_r($fields);
 
-// Array (
-//     [address1] => 123 Main St
-//     [address2] => Suite 200
-//     [city] => Anytown
-//     [state] => USA
+// Output
+// Array
+// (
+//     [address1] => 290 AREA BLVD
+//     [address2] =>
+//     [city] => City
+//     [state] => FL
+//     [zip] => 12323
+//     [condo_unit_number] =>
+//     [condo_floor_number] =>
 // )
